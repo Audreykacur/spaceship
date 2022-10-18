@@ -1,0 +1,131 @@
+<html>
+
+<head>
+    <title> Example </title>
+    <style type="text/css">
+        #GoodShip {
+            width: 150px;
+            height: 90px;
+        }
+
+        #table {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            width: 100%;
+            height: 40px;
+        }
+
+        #enemyShip {
+            position: absolute;
+            right: 100px;
+            top: 100px;
+        }
+    </style>
+    <script>
+        var counter = 0
+
+        var objImage = null;
+        function init() {
+            objImage = document.getElementById("GoodShip");
+            objImage.style.position = "relative";
+            objImage.style.left = "10px";
+            objImage.style.top = "100px";
+        }
+
+        function getKeyAndMove(e) {
+            var key_code = e.which || e.keyCode;
+            switch (key_code) {
+                case 37: //left arrow key
+
+                    setInterval(function () {
+                        if (parseInt(objImage.style.left) > 1)
+                            objImage.style.left = parseInt(objImage.style.left) - 25 + "px";
+                    }, 100);
+                    break;
+                case 38: //Up arrow key
+                    setInterval(function () {
+                        if (parseInt(objImage.style.top) > 100)
+                            objImage.style.top = parseInt(objImage.style.top) - 25 + "px";
+                    }, 100);
+                    break;
+                case 39: //right arrow key
+                    setInterval(function () {
+                        if (parseInt(objImage.style.left) < 1750)
+                            objImage.style.left = parseInt(objImage.style.left) + 25 + "px";
+                    }, 100);
+                    break;
+                case 40: //down arrow key
+                    setInterval(function () { if (parseInt(objImage.style.top) < 950) objImage.style.top = parseInt(objImage.style.top) + 25 + "px" }, 100);
+                    break;
+            }
+        }
+
+
+        function getKeyDoneMove(e) {
+            var key_code = e.which || e.keyCode;
+            document.addEventListener('keydown', (e) => {
+                switch (key_code) {
+                    case 37: //left arrow key
+                        if (parseInt(objImage.style.left) > 1)
+                            objImage.style.left = parseInt(objImage.style.left);
+                        break;
+                    case 38: //Up arrow key
+                        if (parseInt(objImage.style.top) > 100)
+                            objImage.style.top = parseInt(objImage.style.top);
+                        break;
+                    case 39: //right arrow key
+                        if (parseInt(objImage.style.left) < 1750)
+                            objImage.style.left = parseInt(objImage.style.left);
+                        break;
+                    case 40: //down arrow key
+                        if (parseInt(objImage.style.top) < 950)
+                            objImage.style.top = parseInt(objImage.style.top);
+                        break;
+                }
+            });
+        }
+
+        window.onload = init;
+        var counter = $(".counter");
+        if (counter == 5) {
+            alert(counter);
+        }
+
+    </script>
+</head>
+
+<!-- Make a bar that counts how many times you have moused over on the image  -->
+
+<body onkeydown="getKeyAndMove(event)" onkeyup="getKeyDoneMove(event)" style="background-color:black; overflow: hidden">
+
+    <img id="GoodShip" src="spaceships.png" width="150px" height="90" position="absolute" />
+
+    <img src="cosmo.jpg" name="the_background" width="100%" height="95%">
+
+
+    <div id="enemyShip">
+        <a href="#" onMouseover="
+        var xpos=Math.floor(Math.random() *1800);
+        var ypos=Math.floor(Math.random() *900);
+        var num = 0;
+        counter+=1;
+        document.getElementById('counter').innerHTML=counter;
+        document.getElementById('enemyShip').style.left=xpos;
+        document.getElementById('enemyShip').style.top=ypos; ">
+            <img src="enemyShip.png" width="150px" height="70">
+        </a>
+    </div>
+    <div id="table">
+        <!-- table to keep track of points -->
+        <table style="margin-left: auto;
+        margin-right: auto;">
+            <tr style="font-size: 60; color: white">
+                <th> Capture the Aliens &nbsp; &nbsp; &nbsp; &nbsp;Score: </th>
+                <th> <span class, id="counter"> 0 </span> </th>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
