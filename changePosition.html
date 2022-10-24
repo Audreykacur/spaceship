@@ -2,19 +2,45 @@
 
 <head>
     <title> Example </title>
-    <!-- <div id="table">
-        <table style="margin-left: auto;
-        margin-right: auto;">
-            <tr style="font-size: 60; color: white">
-                <th> Save the Aliens &nbsp; &nbsp; &nbsp; &nbsp;Score: </th>
-                <th> <span id="counter"> 0 </span> </th>
-            </tr>
-        </table>
-    </div> -->
     <style type="text/css">
         #GoodShip {
             width: 150px;
             height: 90px;
+        }
+
+        #Yoda1 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
+        #Yoda2 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
+        #Yoda3 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
+        #Yoda4 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
+        #Yoda5 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
         }
 
         #table {
@@ -29,6 +55,8 @@
             position: absolute;
             right: 100px;
             top: 100px;
+            width: 150px;
+            height: 70;
         }
 
         #HowToButton {
@@ -67,6 +95,20 @@
             z-index: 200;
         }
 
+        #congrats {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: rgb(55, 53, 53);
+            width: 500px;
+            height: 500px;
+            margin-left: -250px;
+            /*Half the value of width to center div*/
+            margin-top: -250px;
+            /*Half the value of height to center div*/
+            z-index: 200;
+        }
+
         #HowToclose {
             float: right;
             padding: 10px;
@@ -84,13 +126,15 @@
         #HowToButton {
             cursor: pointer;
         }
+
+        #test {
+            display: none;
+        }
     </style>
 
     <script>
         var counter = 0
-
-
-
+        var Score = 0
 
         var w = window.innerWidth;
         var h = window.innerHeight;
@@ -126,20 +170,80 @@
                     break;
 
             }
+        }
+        window.onload = init;
 
-            function ifFive() {
-                if (counter === 5)
-                    console.log('Counter is 5!');
+
+
+
+        function counterPart() {
+            var xpos = Math.floor(Math.random() * (w - 100));
+            var ypos = Math.floor(Math.random() * (h - 100));
+
+            var yodaXpos = Math.floor(Math.random() * (w - 100));
+            var yodaYpos = Math.floor(Math.random() * (h - 100));
+
+
+            badshipXpos = document.getElementById('enemyShip').offsetLeft;
+            console.log(badshipXpos)
+            badshipYpos = document.getElementById('enemyShip').offsetTop;
+            GoodshipXpos = document.getElementById('GoodShip').offsetLeft;
+            GoodshipYpos = document.getElementById('GoodShip').offsetTop;
+            console.log(GoodshipXpos)
+
+            if (badshipXpos > (GoodshipXpos + 40) || badshipXpos < (GoodshipXpos - 40) && (badshipYpos > (GoodshipYpos + 40) || badshipYpos < (GoodshipYpos - 40))) {
+                console.log("welp");
+
+            }
+            else {
+                counter += 1;
+                if (Score < 5) {
+                    Score += 1
+                }
+                document.getElementById('counter').innerHTML = counter;
+                document.getElementById('Score').innerHTML = Score;
+                document.getElementById('enemyShip').style.left = xpos;
+                document.getElementById('enemyShip').style.top = ypos;
+                if (counter === 5) {
+                    document.getElementById('Yoda1').style.display = 'block';
+                    document.getElementById('Yoda1').style.left = yodaXpos;
+                    document.getElementById('Yoda1').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda2').style.display = 'block';
+                    document.getElementById('Yoda2').style.left = yodaXpos;
+                    document.getElementById('Yoda2').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda3').style.display = 'block';
+                    document.getElementById('Yoda3').style.left = yodaXpos;
+                    document.getElementById('Yoda3').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda4').style.display = 'block';
+                    document.getElementById('Yoda4').style.left = yodaXpos;
+                    document.getElementById('Yoda4').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda5').style.display = 'block';
+                    document.getElementById('Yoda5').style.left = yodaXpos;
+                    document.getElementById('Yoda5').style.top = yodaYpos;
+                    counter = 0
+                    document.getElementById('enemyShip').style.display = 'none';
+                }
             }
         }
 
 
-        window.onload = init;
+        function Scores() {
+            if (Score === 10) {
+                console.log("Winner")
+                document.getElementById('Score').innerHTML = "YOU WON!!";
+            }
+        }
 
     </script>
 </head>
-
-<!-- Make a bar that counts how many times you have moused over on the image  -->
 
 <body onkeydown="getKeyAndMove(event)" style="background-color:black; overflow: hidden">
 
@@ -148,28 +252,79 @@
             margin-right: auto;">
             <tr style="font-size: 60; color: white">
                 <th> Save the Aliens &nbsp; &nbsp; &nbsp; &nbsp;Score: </th>
-                <th> <span id="counter"> 0 </span> </th>
+                <th> <span id="Score"> 0 </span> </th>
             </tr>
         </table>
+        <span id="counter"> 0 </span>
         <button id="HowToButton">How To Play</button>
     </div>
     <img id="GoodShip" src="spaceships.png" width="150px" height="90" position="absolute" />
+
     <div>
-        <a href="#" onclick="
-        var xpos=Math.floor(Math.random() * (w-100));
-        var ypos=Math.floor(Math.random() * (h-100));
-        var num = 0;
-        counter+=1;
-        document.getElementById('counter').innerHTML=counter;
-        document.getElementById('enemyShip').style.left=xpos;
-        document.getElementById('enemyShip').style.top=ypos; ">
-            <img id="enemyShip" src="enemyShip.png" width="150px" height="70">
+        <a href="#" onclick=counterPart()>
+            <img id="enemyShip" src="enemyShip.png">
+
         </a>
     </div>
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda1').style.display = 'none';
+        Scores()">
+            <img id="Yoda1" src="yoda.png">
+        </a>
+    </div>
+
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda2').style.display = 'none';
+        Scores()">
+
+            <img id="Yoda2" src="yoda.png">
+        </a>
+    </div>
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda3').style.display = 'none';
+        Scores()">
+            <img id="Yoda3" src="yoda.png">
+        </a>
+    </div>
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda4').style.display = 'none';
+        Scores()">
+
+            <img id="Yoda4" src="yoda.png">
+        </a>
+    </div>
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda5').style.display = 'none';
+        Scores()">
+
+            <img id="Yoda5" src="yoda.png">
+        </a>
+    </div>
+
     <div id="overlay"></div>
 
     <div id="HowTo">
-        <div class="HowTocontrols">
+        <div>
             <span id="HowToclose">Close</span>
         </div>
         <div class="HowTocontent">
@@ -186,13 +341,17 @@
                 Once you capture the ship 5 times and collect 5 points the aliens will emerge into space and you must
                 capture them all!
             </h3>
-
         </div>
+    </div id="congrats" style="display:none">
+    <h1>Congrats</h1>
+    <div>
+
     </div>
     <script type="text/javascript">
         var closeHowTo = document.getElementById("HowToclose");
         var overlay = document.getElementById("overlay");
         var HowTo = document.getElementById("HowTo");
+        var congrats = document.getElementById("congrats");
         var HowToButton = document.getElementById("HowToButton");
         // Close HowTo 
         closeHowTo.onclick = function () {
