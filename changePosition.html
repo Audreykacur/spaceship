@@ -22,8 +22,11 @@
             top: 100px;
         }
     </style>
+
     <script>
         var counter = 0
+        var w = window.innerWidth;
+        var h = window.innerHeight;
 
         var objImage = null;
         function init() {
@@ -37,7 +40,6 @@
             var key_code = e.which || e.keyCode;
             switch (key_code) {
                 case 37: //left arrow key
-
                     setInterval(function () {
                         if (parseInt(objImage.style.left) > 1)
                             objImage.style.left = parseInt(objImage.style.left) - 25 + "px";
@@ -75,7 +77,7 @@
                             objImage.style.top = parseInt(objImage.style.top);
                         break;
                     case 39: //right arrow key
-                        if (parseInt(objImage.style.left) < 1750)
+                        if (parseInt(objImage.style.left) < 1000)
                             objImage.style.left = parseInt(objImage.style.left);
                         break;
                     case 40: //down arrow key
@@ -106,8 +108,8 @@
 
     <div id="enemyShip">
         <a href="#" onMouseover="
-        var xpos=Math.floor(Math.random() *1800);
-        var ypos=Math.floor(Math.random() *900);
+        var xpos=Math.floor(Math.random() * (w-100));
+        var ypos=Math.floor(Math.random() * (h-100));
         var num = 0;
         counter+=1;
         document.getElementById('counter').innerHTML=counter;
