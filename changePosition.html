@@ -89,9 +89,8 @@
     <script>
         var counter = 0
 
-        if (counter == 5) {
-            alert(counter);
-        }
+
+
 
         var w = window.innerWidth;
         var h = window.innerHeight;
@@ -125,9 +124,18 @@
 
                         objImage.style.top = parseInt(objImage.style.top) + 25 + "px";
                     break;
+
+            }
+
+            function ifFive() {
+                if (counter === 5)
+                    console.log('Counter is 5!');
             }
         }
+
+
         window.onload = init;
+
     </script>
 </head>
 
@@ -145,8 +153,6 @@
         </table>
         <button id="HowToButton">How To Play</button>
     </div>
-
-
     <img id="GoodShip" src="spaceships.png" width="150px" height="90" position="absolute" />
     <div>
         <a href="#" onclick="
@@ -160,19 +166,12 @@
             <img id="enemyShip" src="enemyShip.png" width="150px" height="70">
         </a>
     </div>
-
-
-
-
-
-
     <div id="overlay"></div>
 
     <div id="HowTo">
         <div class="HowTocontrols">
             <span id="HowToclose">Close</span>
         </div>
-
         <div class="HowTocontent">
             <h1>How to save the aliens: </h1>
             <h3>Good ship: <img src="spaceships.png" width="75px" height="45" /><br><br>
@@ -187,8 +186,8 @@
                 Once you capture the ship 5 times and collect 5 points the aliens will emerge into space and you must
                 capture them all!
             </h3>
-        </div>
 
+        </div>
     </div>
     <script type="text/javascript">
         var closeHowTo = document.getElementById("HowToclose");
