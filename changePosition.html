@@ -2,6 +2,15 @@
 
 <head>
     <title> Example </title>
+    <!-- <div id="table">
+        <table style="margin-left: auto;
+        margin-right: auto;">
+            <tr style="font-size: 60; color: white">
+                <th> Save the Aliens &nbsp; &nbsp; &nbsp; &nbsp;Score: </th>
+                <th> <span id="counter"> 0 </span> </th>
+            </tr>
+        </table>
+    </div> -->
     <style type="text/css">
         #GoodShip {
             width: 150px;
@@ -20,6 +29,60 @@
             position: absolute;
             right: 100px;
             top: 100px;
+        }
+
+        #HowToButton {
+            padding: 0;
+            border: none;
+            background-color: black;
+            font-family: Copperplate, Papyrus, fantasy;
+            color: white;
+            font-size: large;
+        }
+
+        #overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            background: rgb(55, 53, 53);
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+            z-index: 100;
+        }
+
+        #HowTo {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            background: rgb(55, 53, 53);
+            width: 500px;
+            height: 500px;
+            margin-left: -250px;
+            /*Half the value of width to center div*/
+            margin-top: -250px;
+            /*Half the value of height to center div*/
+            z-index: 200;
+        }
+
+        #HowToclose {
+            float: right;
+            padding: 10px;
+            cursor: pointer;
+            color: rgb(172, 172, 172);
+            font-family: Copperplate, Papyrus, fantasy;
+        }
+
+        .HowTocontent {
+            padding: 10px;
+            color: rgb(205, 204, 204);
+            font-family: Copperplate, Papyrus, fantasy;
+        }
+
+        #HowToButton {
+            cursor: pointer;
         }
     </style>
 
@@ -65,9 +128,6 @@
             }
         }
         window.onload = init;
-
-
-
     </script>
 </head>
 
@@ -75,13 +135,21 @@
 
 <body onkeydown="getKeyAndMove(event)" style="background-color:black; overflow: hidden">
 
+    <div id="table">
+        <table style="margin-left: auto;
+            margin-right: auto;">
+            <tr style="font-size: 60; color: white">
+                <th> Save the Aliens &nbsp; &nbsp; &nbsp; &nbsp;Score: </th>
+                <th> <span id="counter"> 0 </span> </th>
+            </tr>
+        </table>
+        <button id="HowToButton">How To Play</button>
+    </div>
+
+
     <img id="GoodShip" src="spaceships.png" width="150px" height="90" position="absolute" />
-
-    <img src="cosmo.jpg" name="the_background" width="100%" height="95%">
-
-
-    <div id="enemyShip">
-        <a href="#" onMouseover="
+    <div>
+        <a href="#" onclick="
         var xpos=Math.floor(Math.random() * (w-100));
         var ypos=Math.floor(Math.random() * (h-100));
         var num = 0;
@@ -89,19 +157,59 @@
         document.getElementById('counter').innerHTML=counter;
         document.getElementById('enemyShip').style.left=xpos;
         document.getElementById('enemyShip').style.top=ypos; ">
-            <img src="enemyShip.png" width="150px" height="70">
+            <img id="enemyShip" src="enemyShip.png" width="150px" height="70">
         </a>
     </div>
-    <div id="table">
-        <!-- table to keep track of points -->
-        <table style="margin-left: auto;
-        margin-right: auto;">
-            <tr style="font-size: 60; color: white">
-                <th> Capture the Aliens &nbsp; &nbsp; &nbsp; &nbsp;Score: </th>
-                <th> <span class, id="counter"> 0 </span> </th>
-            </tr>
-        </table>
+
+
+
+
+
+
+    <div id="overlay"></div>
+
+    <div id="HowTo">
+        <div class="HowTocontrols">
+            <span id="HowToclose">Close</span>
+        </div>
+
+        <div class="HowTocontent">
+            <h1>How to save the aliens: </h1>
+            <h3>Good ship: <img src="spaceships.png" width="75px" height="45" /><br><br>
+                Bad ship: <img src="enemyShip.png" width="90px" height="50" /><br><br>
+
+                Use the keyboard arrows to move the good ship on top of the bad ship.
+                <br><br>
+                Once the GoodShip is attacking the bad ship (under the bad ship), use the mousepad to click the Bad
+                Ship. This will give you a point. The bad Ship then teleports across the galaxy and you must capture it
+                again.
+                <br><br>
+                Once you capture the ship 5 times and collect 5 points the aliens will emerge into space and you must
+                capture them all!
+            </h3>
+        </div>
+
     </div>
+    <script type="text/javascript">
+        var closeHowTo = document.getElementById("HowToclose");
+        var overlay = document.getElementById("overlay");
+        var HowTo = document.getElementById("HowTo");
+        var HowToButton = document.getElementById("HowToButton");
+        // Close HowTo 
+        closeHowTo.onclick = function () {
+            overlay.style.display = 'none';
+            HowTo.style.display = 'none';
+        };
+        // Show Overlay and HowTo
+        HowToButton.onclick = function () {
+            overlay.style.display = 'block';
+            HowTo.style.display = 'block';
+        }
+    </script>
+
+    <img src="cosmo.jpg" name="the_background" width="100%" height="97%">
+
+
 </body>
 
 </html>
