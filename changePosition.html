@@ -25,6 +25,11 @@
 
     <script>
         var counter = 0
+
+        if (counter == 5) {
+            alert(counter);
+        }
+
         var w = window.innerWidth;
         var h = window.innerHeight;
 
@@ -38,38 +43,30 @@
 
         function getKeyAndMove(e) {
             var key_code = e.which || e.keyCode;
+            var element = document.getElementById("GoodShip");
             switch (key_code) {
                 case 38: //Up arrow key
-                    setInterval(function () {
-                        if (parseInt(objImage.style.top) > 100)
-                            objImage.style.top = parseInt(objImage.style.top) - 25 + "px";
-                    }, 100);
+                    if (parseInt(objImage.style.top) > 100)
+                        objImage.style.top = parseInt(objImage.style.top) - 25 + "px";
                     break;
                 case 39: //right arrow key
-                    setInterval(function () {
-                        if (parseInt(objImage.style.left) < (w - 160))
-                            objImage.style.left = parseInt(objImage.style.left) + 25 + "px";
-                    }, 100);
+                    if (parseInt(objImage.style.left) < (w - 160))
+                        element.style.left = parseInt(element.style.left) + 25 + 'px';
                     break;
                 case 37: //left arrow key
-                    setInterval(function () {
-                        if (parseInt(objImage.style.left) > 1)
-                            objImage.style.left = parseInt(objImage.style.left) - 25 + "px";
-                    }, 100);
+                    if (parseInt(objImage.style.left) > 1)
+                        objImage.style.left = parseInt(objImage.style.left) - 25 + "px";
                     break;
                 case 40: //down arrow key
-                    setInterval(function () {
-                        if (parseInt(objImage.style.top) < (h - 120))
-                            objImage.style.top = parseInt(objImage.style.top) + 25 + "px";
-                    }, 100);
+                    if (parseInt(objImage.style.top) < (h - 120))
+
+                        objImage.style.top = parseInt(objImage.style.top) + 25 + "px";
                     break;
             }
         }
         window.onload = init;
-        var counter = $(".counter");
-        if (counter == 5) {
-            alert(counter);
-        }
+
+
 
     </script>
 </head>
