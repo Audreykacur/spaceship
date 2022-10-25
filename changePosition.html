@@ -43,6 +43,41 @@
             height: 45;
         }
 
+        #Yoda6 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
+        #Yoda7 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
+        #Yoda8 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
+        #Yoda9 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
+        #Yoda10 {
+            position: absolute;
+            display: none;
+            width: 75px;
+            height: 45;
+        }
+
         #table {
             position: absolute;
             left: 10px;
@@ -95,19 +130,6 @@
             z-index: 200;
         }
 
-        #congrats {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            background: rgb(55, 53, 53);
-            width: 500px;
-            height: 500px;
-            margin-left: -250px;
-            /*Half the value of width to center div*/
-            margin-top: -250px;
-            /*Half the value of height to center div*/
-            z-index: 200;
-        }
 
         #HowToclose {
             float: right;
@@ -133,11 +155,10 @@
     </style>
 
     <script>
-        var counter = 0
         var Score = 0
 
         var w = window.innerWidth;
-        var h = window.innerHeight;
+        var h = (window.innerHeight - 200);
 
         var objImage = null;
         function init() {
@@ -145,6 +166,9 @@
             objImage.style.position = "relative";
             objImage.style.left = "10px";
             objImage.style.top = "100px";
+
+            var audio = new Audio('space.mp3');
+            audio.play();
         }
 
         function getKeyAndMove(e) {
@@ -164,47 +188,48 @@
                         objImage.style.left = parseInt(objImage.style.left) - 25 + "px";
                     break;
                 case 40: //down arrow key
-                    if (parseInt(objImage.style.top) < (h - 120))
+                    if (parseInt(objImage.style.top) < (h + 70))
 
                         objImage.style.top = parseInt(objImage.style.top) + 25 + "px";
                     break;
 
             }
         }
+
+
+        window.onload = setInterval(function () {
+            console.log("times ship moved")
+            var xpos = Math.floor(Math.random() * (w - 100));
+            var ypos = Math.floor(Math.random() * (h) + 100);
+            document.getElementById('enemyShip').style.left = xpos;
+            document.getElementById('enemyShip').style.top = ypos;
+            console.log(document.getElementById('enemyShip').offsetTop);
+        }, 9000);
+
         window.onload = init;
-
-
-
 
         function counterPart() {
             var xpos = Math.floor(Math.random() * (w - 100));
-            var ypos = Math.floor(Math.random() * (h - 100));
-
+            var ypos = Math.floor(Math.random() * (h) + 100);
             var yodaXpos = Math.floor(Math.random() * (w - 100));
-            var yodaYpos = Math.floor(Math.random() * (h - 100));
-
+            var yodaYpos = Math.floor(Math.random() * (h) + 100);
 
             badshipXpos = document.getElementById('enemyShip').offsetLeft;
-            console.log(badshipXpos)
             badshipYpos = document.getElementById('enemyShip').offsetTop;
             GoodshipXpos = document.getElementById('GoodShip').offsetLeft;
             GoodshipYpos = document.getElementById('GoodShip').offsetTop;
-            console.log(GoodshipXpos)
 
             if (badshipXpos > (GoodshipXpos + 40) || badshipXpos < (GoodshipXpos - 40) && (badshipYpos > (GoodshipYpos + 40) || badshipYpos < (GoodshipYpos - 40))) {
-                console.log("welp");
+                console.log("Move your ship on top of the enemy ship then click");
 
             }
             else {
-                counter += 1;
-                if (Score < 5) {
-                    Score += 1
-                }
-                document.getElementById('counter').innerHTML = counter;
+                Score += 1
                 document.getElementById('Score').innerHTML = Score;
                 document.getElementById('enemyShip').style.left = xpos;
                 document.getElementById('enemyShip').style.top = ypos;
-                if (counter === 5) {
+                if (Score === 5) {
+
                     document.getElementById('Yoda1').style.display = 'block';
                     document.getElementById('Yoda1').style.left = yodaXpos;
                     document.getElementById('Yoda1').style.top = yodaYpos;
@@ -228,15 +253,69 @@
                     document.getElementById('Yoda5').style.display = 'block';
                     document.getElementById('Yoda5').style.left = yodaXpos;
                     document.getElementById('Yoda5').style.top = yodaYpos;
-                    counter = 0
-                    document.getElementById('enemyShip').style.display = 'none';
                 }
+                if (Score === 15) {
+                    document.getElementById('enemyShip').style.display = 'block';
+                    document.getElementById('Yoda1').style.display = 'block';
+                    document.getElementById('Yoda1').style.left = yodaXpos;
+                    document.getElementById('Yoda1').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda2').style.display = 'block';
+                    document.getElementById('Yoda2').style.left = yodaXpos;
+                    document.getElementById('Yoda2').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda3').style.display = 'block';
+                    document.getElementById('Yoda3').style.left = yodaXpos;
+                    document.getElementById('Yoda3').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda4').style.display = 'block';
+                    document.getElementById('Yoda4').style.left = yodaXpos;
+                    document.getElementById('Yoda4').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda5').style.display = 'block';
+                    document.getElementById('Yoda5').style.left = yodaXpos;
+                    document.getElementById('Yoda5').style.top = yodaYpos;
+                    document.getElementById('enemyShip').style.display = 'none';
+                    document.getElementById('Yoda6').style.display = 'block';
+                    document.getElementById('Yoda6').style.left = yodaXpos;
+                    document.getElementById('Yoda6').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda7').style.display = 'block';
+                    document.getElementById('Yoda7').style.left = yodaXpos;
+                    document.getElementById('Yoda7').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda8').style.display = 'block';
+                    document.getElementById('Yoda8').style.left = yodaXpos;
+                    document.getElementById('Yoda8').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda9').style.display = 'block';
+                    document.getElementById('Yoda9').style.left = yodaXpos;
+                    document.getElementById('Yoda9').style.top = yodaYpos;
+                    yodaXpos = Math.floor(Math.random() * (w - 100));
+                    yodaYpos = Math.floor(Math.random() * (h - 100));
+                    document.getElementById('Yoda10').style.display = 'block';
+                    document.getElementById('Yoda10').style.left = yodaXpos;
+                    document.getElementById('Yoda10').style.top = yodaYpos;
+                    document.getElementById('enemyShip').style.display = 'none';
+
+                }
+
             }
         }
 
-
         function Scores() {
             if (Score === 10) {
+                console.log("halfway")
+                document.getElementById('Score').innerHTML = "You completed level 1 continue for final level!";
+            }
+            if (Score === 25) {
                 console.log("Winner")
                 document.getElementById('Score').innerHTML = "YOU WON!!";
             }
@@ -244,8 +323,13 @@
 
     </script>
 </head>
+<!-- music -->
 
 <body onkeydown="getKeyAndMove(event)" style="background-color:black; overflow: hidden">
+
+    <!-- <audio id="playMe" loop autoplay>
+        <source src="space.mp3" type="audio/mpeg" />
+    </audio> -->
 
     <div id="table">
         <table style="margin-left: auto;
@@ -255,7 +339,6 @@
                 <th> <span id="Score"> 0 </span> </th>
             </tr>
         </table>
-        <span id="counter"> 0 </span>
         <button id="HowToButton">How To Play</button>
     </div>
     <img id="GoodShip" src="spaceships.png" width="150px" height="90" position="absolute" />
@@ -276,7 +359,6 @@
             <img id="Yoda1" src="yoda.png">
         </a>
     </div>
-
 
     <div>
         <a href="#" onclick="
@@ -321,6 +403,68 @@
         </a>
     </div>
 
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda6').style.display = 'none';
+        Scores()">
+            <img id="Yoda6" src="yoda.png">
+        </a>
+    </div>
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda6').style.display = 'none';
+        Scores()">
+            <img id="Yoda6" src="yoda.png">
+        </a>
+    </div>
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda7').style.display = 'none';
+        Scores()">
+            <img id="Yoda7" src="yoda.png">
+        </a>
+    </div>
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda8').style.display = 'none';
+        Scores()">
+            <img id="Yoda8" src="yoda.png">
+        </a>
+    </div>
+
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda9').style.display = 'none';
+        Scores()">
+            <img id="Yoda9" src="yoda.png">
+        </a>
+    </div>
+
+    <div>
+        <a href="#" onclick="
+        Score+=1;
+        document.getElementById('Score').innerHTML=Score;
+        document.getElementById('Yoda10').style.display = 'none';
+        Scores()">
+            <img id="Yoda10" src="yoda.png">
+        </a>
+    </div>
+
+
     <div id="overlay"></div>
 
     <div id="HowTo">
@@ -329,29 +473,28 @@
         </div>
         <div class="HowTocontent">
             <h1>How to save the aliens: </h1>
-            <h3>Good ship: <img src="spaceships.png" width="75px" height="45" /><br><br>
-                Bad ship: <img src="enemyShip.png" width="90px" height="50" /><br><br>
+            <h3>Your ship: <img src="spaceships.png" width="75px" height="45" /><br>
+                Enemy ship: <img src="enemyShip.png" width="90px" height="50" /><br><br>
 
-                Use the keyboard arrows to move the good ship on top of the bad ship.
-                <br><br>
-                Once the GoodShip is attacking the bad ship (under the bad ship), use the mousepad to click the Bad
-                Ship. This will give you a point. The bad Ship then teleports across the galaxy and you must capture it
-                again.
-                <br><br>
-                Once you capture the ship 5 times and collect 5 points the aliens will emerge into space and you must
-                capture them all!
+                Use the keyboard arrows to move the good ship on top of the enemy ship.
+                <br>
+                <br>
+                Once your ship is attacking the enemy ship, use the mousepad to click the enemy ship.
+                <br>
+                <br>
+                The enemy Ship then teleports across the galaxy and you must capture it again.
+                <br>
+                <br>
+                Once you capture the ship 5 times the aliens will emerge into space and you must
+                capture them all! Collect the aliens by taping them using the mousepad.
             </h3>
         </div>
-    </div id="congrats" style="display:none">
-    <h1>Congrats</h1>
-    <div>
 
     </div>
     <script type="text/javascript">
         var closeHowTo = document.getElementById("HowToclose");
         var overlay = document.getElementById("overlay");
         var HowTo = document.getElementById("HowTo");
-        var congrats = document.getElementById("congrats");
         var HowToButton = document.getElementById("HowToButton");
         // Close HowTo 
         closeHowTo.onclick = function () {
@@ -371,3 +514,8 @@
 </body>
 
 </html>
+
+<!-- Space Heroes by MaxKoMusic | https://maxkomusic.com/
+Music promoted by https://www.free-stock-music.com
+Creative Commons Attribution-ShareAlike 3.0 Unported
+https://creativecommons.org/licenses/by-sa/3.0/deed.en_US -->
