@@ -11,71 +11,71 @@
         #Yoda1 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda2 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda3 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda4 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda5 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda6 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda7 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda8 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda9 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #Yoda10 {
             position: absolute;
             display: none;
-            width: 75px;
-            height: 45;
+            width: 50px;
+            height: 70;
         }
 
         #table {
@@ -162,15 +162,15 @@
 
         var objImage = null;
         function init() {
+
             objImage = document.getElementById("GoodShip");
             objImage.style.position = "relative";
             objImage.style.left = "10px";
             objImage.style.top = "100px";
 
-            var audio = new Audio('space.mp3');
-            audio.play();
-        }
 
+
+        }
         function getKeyAndMove(e) {
             var key_code = e.which || e.keyCode;
             var element = document.getElementById("GoodShip");
@@ -204,7 +204,17 @@
             document.getElementById('enemyShip').style.left = xpos;
             document.getElementById('enemyShip').style.top = ypos;
             console.log(document.getElementById('enemyShip').offsetTop);
+
         }, 9000);
+
+
+        window.onload = setInterval(function () {
+            var audio = new Audio('space.mp3');
+            audio.play();
+
+        }, 10000);
+
+
 
         window.onload = init;
 
@@ -228,7 +238,7 @@
                 document.getElementById('Score').innerHTML = Score;
                 document.getElementById('enemyShip').style.left = xpos;
                 document.getElementById('enemyShip').style.top = ypos;
-                if (Score === 5) {
+                if (Score === 1) {
 
                     document.getElementById('Yoda1').style.display = 'block';
                     document.getElementById('Yoda1').style.left = yodaXpos;
@@ -326,10 +336,6 @@
 <!-- music -->
 
 <body onkeydown="getKeyAndMove(event)" style="background-color:black; overflow: hidden">
-
-    <!-- <audio id="playMe" loop autoplay>
-        <source src="space.mp3" type="audio/mpeg" />
-    </audio> -->
 
     <div id="table">
         <table style="margin-left: auto;
